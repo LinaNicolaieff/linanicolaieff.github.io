@@ -56,6 +56,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - name: Download Pages artifact
+        uses: actions/download-pages-artifact@v3
+        with:
+          path: ./public
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
